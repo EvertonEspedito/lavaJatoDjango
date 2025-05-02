@@ -106,7 +106,7 @@ USE_TZ = True
 
 #Inicio de configurações iniciais
 STATIC_URL = 'static/'
-STATICFILE_DIRS = (os.path.join(BASE_DIR, 'template/static'),)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'templates/static'),)
 STATIC_ROOT = os.path.join('static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
