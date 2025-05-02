@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'clientes'
 ]
 
 MIDDLEWARE = [
@@ -43,7 +44,7 @@ ROOT_URLCONF = 'lavajato.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -105,11 +106,11 @@ USE_TZ = True
 
 #Inicio de configurações iniciais
 STATIC_URL = 'static/'
-STATICFILE_DIRS = (os.path.join(BASE_DIR, 'template/static'))
+STATICFILE_DIRS = (os.path.join(BASE_DIR, 'template/static'),)
 STATIC_ROOT = os.path.join('static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = "/media"
+MEDIA_URL = "/media/"
 #Fim de configurações iniciais
 
 # Default primary key field type
