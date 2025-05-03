@@ -18,8 +18,9 @@
         </div>
 
     </div>
-    <div class="adicionar-cliente">
-        <form action="{% url "row">
+    <div class="adicionar-cliente" style="margin-top: 4rem;">
+        <form action="/clientes" method="POST">{% csrf_token %}
+            <div class="row">
                 <div class="col-md">
                     <p>Nome:</p>
                     <input type="text" class="form-control" placeholder="Primeiro nome">
@@ -28,6 +29,8 @@
                     <p>Sobrenome:</p>
                     <input type="text" class="form-control" placeholder="Sobrenome">
                 </div>
+            </div>
+
             </div>
             <br>
             <p>E-mail:</p>
