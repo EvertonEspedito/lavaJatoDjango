@@ -14,6 +14,6 @@ def clientes (request):
         contato = request.POST.get('contato')
         #pegar dados do(s) veiculos do cliente
         tipos = request.POST.getlist('tipo')
-        modelo = request.POST.getlist('modelo')
-        placa = request.POST.getlist('placa')
-        ano = request.POST.getlist('ano')
+        modelos = request.POST.getlist('modelo')
+        placas = request.POST.getlist('placa')
+        anos = request.POST.getlist('ano')
