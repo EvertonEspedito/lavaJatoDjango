@@ -17,3 +17,5 @@ def clientes (request):
         modelos = request.POST.getlist('modelo')
         placas = request.POST.getlist('placa')
         anos = request.POST.getlist('ano')
+
+       
