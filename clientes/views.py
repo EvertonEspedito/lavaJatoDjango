@@ -20,13 +20,7 @@ def clientes (request):
         modelos = request.POST.getlist('modelo')
         placas = request.POST.getlist('placa')
         anos = request.POST.getlist('ano')
-
-        #Validar Placa
-        veiculoPlaca = Veiculo.objects.filter(placa=placa)
-        if veiculoPlaca.exists():
-            #TODO: Adicionar mensagens
-            return render(request, 'clientes.html',{'modelo':modelo, 'tipo':tipo,'ano':ano})
-
+            
         #Validar CPF e EMAIL
         cliente = Cliente.objects.filter(cpf=cpf)
         if cliente.exists():
