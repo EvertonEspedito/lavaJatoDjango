@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Cliente, Veiculo
 
 # Create your views here.
 def clientes (request):
@@ -18,4 +19,19 @@ def clientes (request):
         placas = request.POST.getlist('placa')
         anos = request.POST.getlist('ano')
 
-       
+        cliente = Cliente(
+            nome=nome,
+            sobrenome=sobrenome,
+            email=email,
+            cpf=cpf,
+            contato=contato
+        )
+        cliente.save()
+
+        for tipo, modelo, placa, ano in zip(tipos, modelos, placas, anos):
+            veic = Veiculo(tipo =tipo, modelo=modelo, placa=placa, ano=ano, cliente=cliente)
+            veic.save()
+        
+        #Renderizar template
+        return HttpResponse('teste')
+

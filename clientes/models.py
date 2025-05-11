@@ -9,7 +9,7 @@ class Cliente(models.Model):
     def __str__(self) -> str:
         return self.nome
 
-class veiculo(models.Model):
+class Veiculo(models.Model):
     tipo = models.CharField(max_length=50)
     modelo = models.CharField(max_length=50)
     placa = models.CharField(max_length=8)
