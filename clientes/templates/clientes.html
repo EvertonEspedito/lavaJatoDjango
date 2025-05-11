@@ -53,7 +53,22 @@
                 <span class="btn-add-carros" onclick="add_carro()">+ Adicionar um carro</span>
   
                 <div id="form-carro">
-  
+                    {% for tipo,modelo,placa,ano in veiculos  %}
+                        <div class="row" style="margin-top: 1rem;">
+                            <div class="col-md">
+                                <input type="text" placeholder="Carro/Moto" class="form-control" name="tipo" value="{{tipo}}"> 
+                            </div>
+                            <div class="col-md">
+                                <input type="text" placeholder="Modelo" class="form-control" name="modelo" value="{{modelo}}">
+                            </div>
+                            <div class="col-md">
+                                <input type="text" placeholder="Placa" class="form-control" name="placa" value="{{placa}}">
+                            </div>
+                            <div class="col-md">
+                                <input type="number" placeholder="Ano" class="form-control" name="ano" value="{{ano}}">
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
   
             </div>

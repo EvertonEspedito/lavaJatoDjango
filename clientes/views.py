@@ -25,10 +25,10 @@ def clientes (request):
         cliente = Cliente.objects.filter(cpf=cpf)
         if cliente.exists():
             #TODO: Adicionar mensagens
-            return render(request, 'clientes.html',{'nome':nome, 'sobrenome':sobrenome,'email':email,'contato':contato})
+            return render(request, 'clientes.html',{'nome':nome, 'sobrenome':sobrenome,'email':email,'contato':contato, 'veiculos':zip(tipos, modelos, placas, anos)})
         if not re.fullmatch(re.compile(r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+'), email):
             #TODO: Adicionar mensagens
-            return render(request, 'clientes.html',{'nome':nome, 'sobrenome':sobrenome,'cpf':cpf,'contato':contato}) 
+            return render(request, 'clientes.html',{'nome':nome, 'sobrenome':sobrenome,'cpf':cpf,'contato':contato,'veiculos':zip(tipos, modelos, placas, anos)}) 
         
 
         cliente = Cliente(
