@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Cliente, Veiculo
+import re
+from django.shortcuts import redirect
 
 # Create your views here.
 def clientes (request):
@@ -19,6 +21,18 @@ def clientes (request):
         placas = request.POST.getlist('placa')
         anos = request.POST.getlist('ano')
 
+        cliente = Cliente.objects.filter(cpf=cpf)
+
+        if cliente.exists():
+            #TODO: Adicionar mensagens
+            return HttpResponse('Cliente já existe')
+
+        if not re.fullmatch(re.compile(r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+'), email):
+            #TODO: Adicionar mensagens
+            return HttpResponse('Email inválido')  
+        
+        #Validar CPF
+
         cliente = Cliente(
             nome=nome,
             sobrenome=sobrenome,
@@ -29,9 +43,17 @@ def clientes (request):
         cliente.save()
 
         for tipo, modelo, placa, ano in zip(tipos, modelos, placas, anos):
-            veic = Veiculo(tipo =tipo, modelo=modelo, placa=placa, ano=ano, cliente=cliente)
+            print("Salvando veículo:", tipo, modelo, placa, ano)  # DEBUG
+            
+            veic = Veiculo(
+                tipo=tipo,
+                modelo=modelo,
+                placa=placa,
+                ano=ano,
+                cliente=cliente
+            )
             veic.save()
         
         #Renderizar template
-        return HttpResponse('teste')
+        return redirect('/clientes/')
 

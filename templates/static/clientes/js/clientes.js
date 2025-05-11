@@ -15,7 +15,7 @@ function add_carro(){
                 <input type="text" placeholder="Placa" class="form-control" name="placa">
             </div>
             <div class="col-md">
-                <input type="text" placeholder="Ano" class="form-control" name="ano">
+                <input type="number" placeholder="Ano" class="form-control" name="ano">
             </div>
         </div>
     `;
