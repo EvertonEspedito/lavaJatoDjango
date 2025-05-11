@@ -21,17 +21,21 @@ def clientes (request):
         placas = request.POST.getlist('placa')
         anos = request.POST.getlist('ano')
 
-        cliente = Cliente.objects.filter(cpf=cpf)
+        #Validar Placa
+        veiculoPlaca = Veiculo.objects.filter(placa=placa)
+        if veiculoPlaca.exists():
+            #TODO: Adicionar mensagens
+            return render(request, 'clientes.html',{'modelo':modelo, 'tipo':tipo,'ano':ano})
 
+        #Validar CPF e EMAIL
+        cliente = Cliente.objects.filter(cpf=cpf)
         if cliente.exists():
             #TODO: Adicionar mensagens
-            return HttpResponse('Cliente já existe')
-
+            return render(request, 'clientes.html',{'nome':nome, 'sobrenome':sobrenome,'email':email,'contato':contato})
         if not re.fullmatch(re.compile(r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+'), email):
             #TODO: Adicionar mensagens
-            return HttpResponse('Email inválido')  
+            return render(request, 'clientes.html',{'nome':nome, 'sobrenome':sobrenome,'cpf':cpf,'contato':contato}) 
         
-        #Validar CPF
 
         cliente = Cliente(
             nome=nome,
